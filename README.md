@@ -37,7 +37,9 @@ IV. The remediation workflow mentioned above in the System Overview required cer
  <img width="1465" height="301" alt="Screenshot 2025-09-12 at 9 49 20 AM" src="https://github.com/user-attachments/assets/53b14758-f377-4425-ad56-b5c08c0b1d77" />
 
  
-The UI Action includes a script that leverages the GlideAjax API to call a Script Include from the client. The Script Include that was created is responsibe for making the API call that fixes the EC2 then creates a record in the Remediation Log table to detail the remediation attempt.
+The UI Action includes a script that leverages the GlideAjax API to call a Script Include (server-side) from the client. The Script Include that was created is responsibe for making the API call that fixes the EC2 then creates a record in the Remediation Log table to detail the remediation attempt.
+
+The script the EC2 Remediation Assistant runs is slightly different. There is no server side logic incorporated. It also needs to derive the sys_id of the EC2 record through a series of queries starting from the instance id. After the sys_id is obtained the rest of the logic is the same. 
 
  
 <img width="1334" height="420" alt="Screenshot 2025-09-12 at 9 47 50 AM" src="https://github.com/user-attachments/assets/cfb524c3-51c2-4932-9ade-c2e8b816bd01" />
