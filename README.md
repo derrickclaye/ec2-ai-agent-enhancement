@@ -1,6 +1,6 @@
 ### System Overview
 
-Undetected server failures can have catastrophic repercussions when gone undetected. In order to ensure that doesn’t happen, I leveraged ServiceNow in order to configured a remediation system that detects when a server has failed and deals with it accordingly. When a server’s status changes from ‘ON’ to ‘OFF’ this triggers the remediation workflow.  The workflow is comprised of 3 steps. First I leveraged AI Search to return articles that outline how to solve a failed EC2 instance. That article is then sent to the appropriate personnel via Slack. Lastly an incident record is created to document the failure. That completes the workflow, and now after referencing the article(s) the dev-ops engineers now know what scripts to run in order to bring the failed server back online. 
+Undetected server failures can have catastrophic repercussions when gone undetected. In order to ensure that doesn’t happen, I leveraged ServiceNow in order to configured a remediation system that detects when a server has failed and deals with it accordingly. When a server’s status changes from ‘ON’ to ‘OFF’ this triggers the remediation workflow.  The workflow is comprised of 3 steps. First I leveraged AI Search to return articles that outline how to solve a failed EC2 instance. That article is then sent to the appropriate personnel via Slack. Lastly an incident record is created to document the failure. That completes the workflow, and now after referencing the article(s) the dev-ops engineers now know what scripts to run in order to bring the failed server back online. The engineer also has the option the utilize an AI Agent designed to carry out the remediation process for the developer.
 
 
 <img width="1181" height="1159" alt="Diagram" src="https://github.com/user-attachments/assets/6aa490b9-178a-4159-a245-b01e29eb54cb" />
@@ -32,12 +32,12 @@ IV. The remediation workflow mentioned above in the System Overview required cer
 
 	- The last step was to take relevant data from the EC2 record and create an Incident to document the failure. 
 
- V. At this point the Dev-Ops engineer knows that they must navigate to the EC2 record and press the UI Action EC2 Remediation Trigger.
+ V. At this point the Dev-Ops engineer knows that they must navigate to the EC2 record and press the UI Action EC2 Remediation Trigger or navigate to NOW Assist and utilize the EC2 Remediation Assisstant.
 
  <img width="1465" height="301" alt="Screenshot 2025-09-12 at 9 49 20 AM" src="https://github.com/user-attachments/assets/53b14758-f377-4425-ad56-b5c08c0b1d77" />
 
  
-This UI Action includes a script that leverages the GlideAjax API to call a Script Include from the client. The Script Include that was created is responsibe for making the API call that fixes the EC2 then creates a record in the Remediation Log table to detail the remediation attempt.
+The UI Action includes a script that leverages the GlideAjax API to call a Script Include from the client. The Script Include that was created is responsibe for making the API call that fixes the EC2 then creates a record in the Remediation Log table to detail the remediation attempt.
 
  
 <img width="1334" height="420" alt="Screenshot 2025-09-12 at 9 47 50 AM" src="https://github.com/user-attachments/assets/cfb524c3-51c2-4932-9ade-c2e8b816bd01" />
@@ -62,7 +62,7 @@ As a DevOps engineer you must have a dedicated slack channel in order to receive
 
 <img width="835" height="141" alt="Screenshot 2025-09-12 at 9 39 12 AM" src="https://github.com/user-attachments/assets/23b48846-da28-4864-96a3-ac97cec94bc7" />
 
-An additional method to remediate the EC2 instance is also available. An AI Agent is accessible via NOW Assist to remediate the failed EC@ instance with human supervision. THe agent accepts two relevant pieces of data from the engineer - either the failed EC2 Instance ID or the Incident record number. In the event the engineer provides the agent with the EC2 Instance ID, the agent will first ensure the ID is in the correct format with the use of a dedicated tool, and once confirmation is given it will proceed to run a remediation script. If the user provides the number of the Incident record that was created in response to the failed instance, the agent will first extract the Instance ID from the record, then it will run the remediation script after engineer confirmation.
+An additional method to remediate the EC2 instance is also available. An AI Agent is accessible via NOW Assist to remediate the failed EC2 instance with human supervision. The agent accepts two relevant pieces of data from the engineer - either the failed EC2 Instance ID or the Incident record number. In the event the engineer provides the agent with the EC2 Instance ID, the agent will first ensure the ID is in the correct format with the use of a dedicated tool, and once confirmation is given it will proceed to run the remediation script. Instead, if the user provides the number of the Incident record that was created in response to the failed instance, the agent will first extract the Instance ID from the record, then it will run the remediation script after engineer confirmation.
 
 <img width="562" height="721" alt="Screenshot 2025-09-18 at 11 57 53 PM" src="https://github.com/user-attachments/assets/cf4ed89d-12cc-4a79-8e73-087d80ea3123" />
 
