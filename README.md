@@ -48,6 +48,7 @@ This UI Action includes a script that leverages the GlideAjax API to call a Scri
 
 In terms of basic infrastructure, I ensured certain table fields were made mandatory, created an Application Menu to contain the EC2 Instance and Remediation Log tables as well as ensured the Incident report created in the flow was as detailed as possible. 
 
+
 <img width="314" height="274" alt="Screenshot 2025-09-12 at 9 36 39 AM" src="https://github.com/user-attachments/assets/e790a9cd-676b-42a0-894b-441ad5c84f11" />
 
 
@@ -61,6 +62,9 @@ As a DevOps engineer you must have a dedicated slack channel in order to receive
 
 <img width="835" height="141" alt="Screenshot 2025-09-12 at 9 39 12 AM" src="https://github.com/user-attachments/assets/23b48846-da28-4864-96a3-ac97cec94bc7" />
 
- 
+An additional method to remediate the EC2 instance is also available. An AI Agent is accessible via NOW Assist to remediate the failed EC@ instance with human supervision. THe agent accepts two relevant pieces of data from the engineer - either the failed EC2 Instance ID or the Incident record number. In the event the engineer provides the agent with the EC2 Instance ID, the agent will first ensure the ID is in the correct format with the use of a dedicated tool, and once confirmation is given it will proceed to run a remediation script. If the user provides the number of the Incident record that was created in response to the failed instance, the agent will first extract the Instance ID from the record, then it will run the remediation script after engineer confirmation.
+
+<img width="562" height="721" alt="Screenshot 2025-09-18 at 11 57 53 PM" src="https://github.com/user-attachments/assets/cf4ed89d-12cc-4a79-8e73-087d80ea3123" />
+
 
 
